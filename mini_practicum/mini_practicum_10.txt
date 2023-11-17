@@ -1,0 +1,40 @@
+Unit 10 Practice Problems (Unit 11 Day 1 mini-practicum)
+
+The goal of these "mini practica" is to give you practice with coding problems
+similar to those that you will see on the midterm practica. You will be 
+required to solve each problem with minimal assistance. You should use these
+mini-practica as an opportunity to gauge your preparedness for the exams.
+
+You should create all of your required files in this folder along with these
+instructions.
+
+Each mini-practicum counts as a homework assignment. 
+====================================================
+You have been provided with a file named music.py that contains some code to 
+help you solve the following problems. A class defined in this code handles 
+time duration, which is often recorded in hours, minutes, and seconds. A 
+function that takes in a Time instance and returns a string in colon format 
+(e.g. 3:12:36) has also been provided. In main you can create a Time instance 
+and print it to see it work.
+
+1. Every song has a title, recording artist, and running duration. Create a 
+class Song that encapsulates this information. You must use slots and all 
+attributes must be instance specific.
+
+In main, create a Song for at least 3 tracks of your favorite album. You can 
+estimate the duration if not known.
+
+2. Music albums have a title, artist (sometimes various), some number of tracks, 
+and a total running duration. Create an Album class that properly encapsulates 
+this information. The tracks and song lengths will be added after the album's 
+creation. You must use slots and all attributes must be instance specific.
+
+Create a function to add a Song to the album. Whenever the album is updated 
+with a new Song, recalculate the album's length. Be sure to handle when times 
+added together exceed the boundary of the time component (e.g. minutes).
+
+3. Write a function that prints all of the information about an album. Each 
+track should appear on it's own line. 
+
+4. In main, create an Album based on your favorite album. Add all of the tracks 
+from activity 2 to the album and then print the album.
