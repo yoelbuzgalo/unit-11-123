@@ -15,3 +15,8 @@ class Song:
 
 def get_time(time):
     return '{}:{:02}:{:02}'.format(time.hours, time.minutes, time.seconds)
+
+def main():
+    track_1 = Song('Californication', 'Red Hot Chili Peppers', Time(0, 2, 20))
+    track_2 = Song('You Get What You Give', 'New Radicals', Time(0, 4, 35))
+    track_3 = Song('Fortunate Son', 'Creedence Clearwater Revival', Time(0, 3, 10))
