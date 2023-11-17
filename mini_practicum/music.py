@@ -14,11 +14,10 @@ class Song:
         self.duration = duration
 
 class Album:
-    __slots__ = ['title', 'artist', 'num_tracks', 'total_duration']
+    __slots__ = ['title', 'artists', 'tracks', 'num_tracks', 'total_duration']
     def __init__(self, title, tracks=None):
         self.title = title
         self.tracks = []
-        
         # Checks whether if tracks list is passed to this class, adds each one of them to the album track list
         if tracks is not None and len(tracks) > 0:
             for track in tracks:
@@ -42,7 +41,7 @@ class Album:
             total_duration_mins += track.duration.minutes
             total_duration_hours += track.duration.hours
 
-        self.total_duration(Time(total_duration_hours, total_duration_mins, total_duration_seconds))
+        self.total_duration = Time(total_duration_hours, total_duration_mins, total_duration_seconds)
         
 def add_song(song, album):
     album.tracks.append(song)
@@ -54,7 +53,7 @@ def print_album(album):
     print("Album Title:", album.title)
     print("Album Tracks:")
     for track in album.tracks:
-        print(track.titl)
+        print(track.title)
     print("Album Duration:", get_time(album.total_duration))
 
 def get_time(time):
@@ -64,4 +63,12 @@ def main():
     track_1 = Song('Californication', 'Red Hot Chili Peppers', Time(0, 2, 20))
     track_2 = Song('You Get What You Give', 'New Radicals', Time(0, 4, 35))
     track_3 = Song('Fortunate Son', 'Creedence Clearwater Revival', Time(0, 3, 10))
+
+    tracks = [track_1, track_2, track_3]
+
+    my_album = Album('Some Title', tracks)
+
+    print_album(my_album)
+
+main()
 
