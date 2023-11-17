@@ -44,10 +44,35 @@ class Student:
     
     def get_gpa(self):
         return self.__gpa
-
+    
     def print(self):
         """
         Prints a student's info to standard output.
         """
         print("Student: ID=", self.__id, ", name=", self.__name, 
             ", credits=", self.__credits, ", GPA=", self.__gpa, sep="")
+    
+    
+class Course:
+    __slots__ = ['__name', '__credits', '__grade']
+    def __init__(self, name, credits, grade):
+        self.__name = name
+        self.__credits = credits
+        self.__grade = grade
+    
+    def get_name(self):
+        return self.__name
+    
+    def get_credits(self):
+        return self.__credits
+    
+    def get_grade(self):
+        return self.__grade
+    
+    def print(self):
+        """
+        Prints a student's info to standard output.
+        """
+        print("Course: Name=", self.__name, ", credits=", self.__credits, 
+            ", grade=", self.__grade, sep="")
+
