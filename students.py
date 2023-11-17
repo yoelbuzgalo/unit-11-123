@@ -25,17 +25,29 @@ class Student:
     A class that represents a student with fields for ID, name, credits, and
     GPA.
     """
-    __slots__ = ["id", "name", "credits", "gpa"]
+    __slots__ = ["__id", "__name", "__credits", "__gpa"]
 
     def __init__(self, id, name):
-        self.id = id
-        self.name = name
-        self.credits = 0
-        self.gpa = 0
+        self.__id = id
+        self.__name = name
+        self.__credits = 0
+        self.__gpa = 0
+
+    def get_id(self):
+        return self.__id
+    
+    def get_name(self):
+        return self.__name
+    
+    def get_credits(self):
+        return self.__credits
+    
+    def get_gpa(self):
+        return self.__gpa
 
 def print_student(student):
     """
     Prints a student's info to standard output.
     """
-    print("Student: ID=", student.id, ", name=", student.name, 
-        ", credits=", student.credits, ", GPA=", student.gpa, sep="")
+    print("Student: ID=", student.get_id(), ", name=", student.get_name(), 
+        ", credits=", student.get_credits(), ", GPA=", student.get_gpa(), sep="")
