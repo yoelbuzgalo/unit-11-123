@@ -45,9 +45,9 @@ class Student:
     def get_gpa(self):
         return self.__gpa
 
-def print_student(student):
-    """
-    Prints a student's info to standard output.
-    """
-    print("Student: ID=", student.get_id(), ", name=", student.get_name(), 
-        ", credits=", student.get_credits(), ", GPA=", student.get_gpa(), sep="")
+    def print(self):
+        """
+        Prints a student's info to standard output.
+        """
+        print("Student: ID=", self.__id, ", name=", self.__name, 
+            ", credits=", self.__credits, ", GPA=", self.__gpa, sep="")
