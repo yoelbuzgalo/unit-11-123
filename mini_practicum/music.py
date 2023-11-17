@@ -6,5 +6,12 @@ class Time:
         self.minutes = minutes
         self.seconds = seconds
 
+class Song:
+    __slots__ = ['title', 'artist', 'duration']
+    def __init__(self, title, artist, duration):
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
 def get_time(time):
     return '{}:{:02}:{:02}'.format(time.hours, time.minutes, time.seconds)
