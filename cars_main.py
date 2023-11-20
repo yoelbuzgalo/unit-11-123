@@ -27,8 +27,8 @@ def main():
 
     cars_list = [car_1, car_2, car_3, car_4, car_5]
 
-    # print(sorted(cars_list))
-    print(cars_list)
+    print(sorted(cars_list))
+    # print(cars_list)
 
 
 

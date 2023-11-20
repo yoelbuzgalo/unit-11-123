@@ -28,6 +28,9 @@ class Car:
         if type(self) == type(other):
             return self.__vin == other.__vin
     
+    def __lt__(self, other):
+        return self.__vin < other.__vin
+
     def print_car(self):
         print("Car={VIN=", self.__vin, ", Make=", self.__make, ", Model=", self.__model, ", Year=", self.__year, ", Mileage=", self.__mileage, ", Fuel=", self.__fuel,"}" ,sep="")
 
