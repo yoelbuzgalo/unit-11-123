@@ -10,3 +10,8 @@ class Car:
     
     def print_car(self):
         print("Car={VIN=", self.__vin, ", Make=", self.__make, ", Model=", self.__model, ", Year=", self.__year, ", Mileage=", self.__mileage, ", Fuel=", self.__fuel,"}" ,sep="")
+
+    def filler_up(self, gallons):
+        self.__fuel += gallons
+        if self.__fuel > 15:
+            self.__fuel = 15
