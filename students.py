@@ -54,11 +54,12 @@ class Student:
     
     
 class Course:
-    __slots__ = ['__name', '__credits', '__grade']
+    __slots__ = ['__name', '__credits', '__grade', '__courses']
     def __init__(self, name, credits, grade):
         self.__name = name
         self.__credits = credits
         self.__grade = grade
+        self.__courses = []
     
     def get_name(self):
         return self.__name
@@ -74,5 +75,11 @@ class Course:
         Prints a student's info to standard output.
         """
         print("Course: Name=", self.__name, ", credits=", self.__credits, 
-            ", grade=", self.__grade, sep="")
+            ", grade=", self.__grade, ", Courses=",self.__courses, sep="")
+        
+    def get_points(self):
+        return QUALITY_POINTS[self.grade] * self.__credits
+    
+    def add_course(self, course):
+        self.__courses.append(course)
 
