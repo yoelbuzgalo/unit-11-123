@@ -8,5 +8,10 @@ def main():
     class_1.print()
     class_2.print()
 
+    me.add_course(class_1)
+    me.add_course(class_2)
+
+    print(me.get_gpa())
+
 if __name__ == "__main__":
     main()

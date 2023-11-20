@@ -25,13 +25,14 @@ class Student:
     A class that represents a student with fields for ID, name, credits, and
     GPA.
     """
-    __slots__ = ["__id", "__name", "__credits", "__gpa"]
+    __slots__ = ["__id", "__name", "__credits", "__gpa", "__courses"]
 
     def __init__(self, id, name):
         self.__id = id
         self.__name = name
         self.__credits = 0
         self.__gpa = 0
+        self.__courses = []
 
     def get_id(self):
         return self.__id
@@ -43,23 +44,30 @@ class Student:
         return self.__credits
     
     def get_gpa(self):
-        return self.__gpa
+        total_credits = 0
+        total_qp = 0
+        for course in self.__courses:
+            total_credits += course.get_credits()
+            total_qp += course.get_points()
+        return total_qp/total_credits
     
     def print(self):
         """
         Prints a student's info to standard output.
         """
         print("Student: ID=", self.__id, ", name=", self.__name, 
-            ", credits=", self.__credits, ", GPA=", self.__gpa, sep="")
+            ", credits=", self.__credits, ", GPA=", self.__gpa,", Courses=",self.__courses, sep="")
+    
+    def add_course(self, course):
+        self.__courses.append(course)
     
     
 class Course:
-    __slots__ = ['__name', '__credits', '__grade', '__courses']
+    __slots__ = ['__name', '__credits', '__grade']
     def __init__(self, name, credits, grade):
         self.__name = name
         self.__credits = credits
         self.__grade = grade
-        self.__courses = []
     
     def get_name(self):
         return self.__name
@@ -75,11 +83,8 @@ class Course:
         Prints a student's info to standard output.
         """
         print("Course: Name=", self.__name, ", credits=", self.__credits, 
-            ", grade=", self.__grade, ", Courses=",self.__courses, sep="")
+            ", grade=", self.__grade, sep="")
         
     def get_points(self):
-        return QUALITY_POINTS[self.grade] * self.__credits
-    
-    def add_course(self, course):
-        self.__courses.append(course)
+        return QUALITY_POINTS[self.__grade] * self.__credits
 
