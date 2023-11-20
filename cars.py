@@ -19,6 +19,10 @@ class Car:
             + "\n Year=" + str(self.__year) \
             + "\n Mileage=" + str(self.__mileage) \
             + "\n Fuel=" + str(self.__fuel) \
+            
+    def __str__(self):
+        return "Car={VIN=" + self.__vin + ", Make=" + self.__make + ", Model="+ self.__model \
+            + ", Year=" + self.__year + ", Mileage=" + self.__mileage + ", Fuel=", self.__fuel,"}" \
     
     def print_car(self):
         print("Car={VIN=", self.__vin, ", Make=", self.__make, ", Model=", self.__model, ", Year=", self.__year, ", Mileage=", self.__mileage, ", Fuel=", self.__fuel,"}" ,sep="")
