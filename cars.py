@@ -23,6 +23,10 @@ class Car:
     def __str__(self):
         return "Car={VIN=" + self.__vin + ", Make=" + self.__make + ", Model="+ self.__model \
             + ", Year=" + self.__year + ", Mileage=" + self.__mileage + ", Fuel=", self.__fuel,"}" \
+            
+    def __eq__(self, other):
+        if type(self) == type(other):
+            return self.__vin == other.__vin
     
     def print_car(self):
         print("Car={VIN=", self.__vin, ", Make=", self.__make, ", Model=", self.__model, ", Year=", self.__year, ", Mileage=", self.__mileage, ", Fuel=", self.__fuel,"}" ,sep="")
