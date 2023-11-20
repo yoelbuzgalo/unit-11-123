@@ -22,12 +22,15 @@ def main():
     # car_1_str = str(car_1)
     # print(car_1_str)
     # print(car_1)
-    print(car_1 == car_3)
-    print(car_2 == car_3)
+    # print(car_1 == car_3)
+    # print(car_2 == car_3)
 
     cars_list = [car_1, car_2, car_3, car_4, car_5]
 
-    print(sorted(cars_list))
+    unique_cars = set(cars_list)
+    print(unique_cars)
+
+    # print(sorted(cars_list))
     # print(cars_list)
 
 
