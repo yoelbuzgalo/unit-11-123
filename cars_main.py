@@ -16,5 +16,10 @@ def main():
     car_1.print_car()
     car_2.print_car()
 
+    car_1_str = str(car_1)
+
+    print(car_1_str)
+    print(car_1)
+
 if __name__ == "__main__":
     main()

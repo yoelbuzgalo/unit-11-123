@@ -10,6 +10,15 @@ class Car:
         self.__year = year
         self.__mileage = mileage
         self.__fuel = fuel
+
+    def __repr__(self):
+        return "Car:" \
+            + "\n VIN=" + str(self.__vin) \
+            + "\n Make=" + self.__make \
+            + "\n Model=" + self.__model \
+            + "\n Year=" + str(self.__year) \
+            + "\n Mileage=" + str(self.__mileage) \
+            + "\n Fuel=" + str(self.__fuel) \
     
     def print_car(self):
         print("Car={VIN=", self.__vin, ", Make=", self.__make, ", Model=", self.__model, ", Year=", self.__year, ", Mileage=", self.__mileage, ", Fuel=", self.__fuel,"}" ,sep="")
@@ -27,5 +36,4 @@ class Car:
             mileage = fuel_taken*Car.MPG
         self.__mileage += mileage
         self.__fuel -= fuel_taken
-    
 
