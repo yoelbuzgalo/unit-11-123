@@ -3,6 +3,21 @@ import mixed_fractions
 TUPLES = [(3, 1, 2), (3, -1, 1), (2, 0, 1)]
 FRACTIONS = [mixed_fractions.Fraction(w, n, d) for w, n, d in TUPLES]
 
+def test_fraction_implementation():
+    # Setup
+    w = 10
+    n = 2
+    d = 5
+
+    # Invoke
+    fraction_val = mixed_fractions.Fraction(w, n,d)
+    result_w, result_n, result_d = fraction_val.get_fraction()
+
+    # Analysis
+    assert result_w == w
+    assert result_n == n
+    assert result_d == d
+
 ''''
 def test_unique_sorted_list():
     actual = mixed_fractions.unique_sorted_list(FRACTIONS)  
