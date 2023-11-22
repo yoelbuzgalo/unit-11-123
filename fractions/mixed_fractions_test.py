@@ -111,6 +111,55 @@ def test_subtract_fraction_2():
     # Analysis
     assert result.simplify().get_fraction() == expected
 
+def test_fraction_equality():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(1,2,3)
+    fraction_2 = mixed_fractions.Fraction(0, 10, 6)
+    expected = True
+    
+    # Invoke
+    result = fraction_1 == fraction_2
+    
+    # Analysis
+    assert result == expected
+
+def test_fraction_sorting():
+    # Setup
+    fractions = [mixed_fractions.Fraction(-1, 4, 1), mixed_fractions.Fraction(1,2,3), mixed_fractions.Fraction(2, 0, 1)]
+    expected = [mixed_fractions.Fraction(1,2,3), mixed_fractions.Fraction(2,0,1), mixed_fractions.Fraction(-1, 4, 1)]
+    
+    # Invoke
+    result = sorted(fractions)
+
+    # Analysis
+    assert result == expected
+
+def test_fraction_less_than_equal():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(2,4,2)
+    fraction_2 = mixed_fractions.Fraction(3,2,3)
+    expected = True
+
+    # Invoke
+    result = fraction_2 <= fraction_1
+
+    # Analysis
+    assert result == expected
+
+def test_fraction_not_equal():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(2,4,2)
+    fraction_2 = mixed_fractions.Fraction(3,2,3)
+    expected = True
+
+    # Invoke
+    result = fraction_2 != fraction_1
+
+    # Analysis
+    assert result == expected
+
+
+
 ''''
 def test_unique_sorted_list():
     actual = mixed_fractions.unique_sorted_list(FRACTIONS)  

@@ -108,17 +108,8 @@ def gcd(a, b):  # greatest common divisor
     return a
 
 def main():
-    # print(Fraction(2,3,1))
-    # fraction_1 = Fraction(1,2,3)
-    # fraction_2 = Fraction(0, 10, 6)
-    # if fraction_1 == fraction_2:
-    #     print(True)
-    fractions = [Fraction(-1, 4, 1), Fraction(1,2,3), Fraction(2, 0, 1)]
-    print(sorted(fractions))
-    fraction_3 = Fraction(2,4,2)
-    fraction_4 = Fraction(3,2,3)
-    if fraction_4 <= fraction_3:
-        print(True)
+    print(Fraction(2,3,1))
+
 
 if __name__ == "__main__":
     main()
