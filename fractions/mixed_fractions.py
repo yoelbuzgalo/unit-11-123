@@ -23,10 +23,18 @@ class Fraction:
             
     def __lt__(self, other):
         if type(self) == type(other):
-            w_1, n_1, d_1 = self.simplify().get_fraction()
-            w_2, n_2, d_2 = other.simplify().get_fraction()
+            w_1, n_1, d_1 = self.improper_fraction()
+            w_2, n_2, d_2 = other.improper_fraction()
 
-            if w_1 + (n_1/d_1) < w_2 + (n_2/d_2) :
+            if (n_1/d_1) < (n_2/d_2):
+                return True
+    
+    def __le__(self, other):
+        if type(self) == type(other):
+            w_1, n_1, d_1 = self.improper_fraction()
+            w_2, n_2, d_2 = other.improper_fraction()
+
+            if (n_1/d_1) <= (n_2/d_2):
                 return True
 
     def get_fraction(self):
@@ -107,6 +115,10 @@ def main():
     #     print(True)
     fractions = [Fraction(-1, 4, 1), Fraction(1,2,3), Fraction(2, 0, 1)]
     print(sorted(fractions))
+    fraction_3 = Fraction(2,4,2)
+    fraction_4 = Fraction(3,2,3)
+    if fraction_4 <= fraction_3:
+        print(True)
 
 if __name__ == "__main__":
     main()
