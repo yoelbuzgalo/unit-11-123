@@ -12,6 +12,14 @@ class Fraction:
 
     def __str__(self):
         return "<" + str(self.__w) + ", " + str(self.__n) + ", " + str(self.__d) + ">"
+    
+    def __eq__(self, other):
+        if type(self) == type(other):
+            w_1, n_1, d_1 = self.simplify().get_fraction()
+            w_2, n_2, d_2 = other.simplify().get_fraction()
+
+            if w_1 == w_2 and n_1 == n_2 and d_1 == d_2:
+                return True
 
     def get_fraction(self):
         return (self.__w, self.__n, self.__d)
@@ -85,6 +93,10 @@ def gcd(a, b):  # greatest common divisor
 
 def main():
     print(Fraction(2,3,1))
+    fraction_1 = Fraction(1,2,3)
+    fraction_2 = Fraction(0, 10, 6)
+    if fraction_1 == fraction_2:
+        print(True)
 
 if __name__ == "__main__":
     main()
