@@ -63,6 +63,30 @@ def test_fraction_simplify_764():
     assert result_n == 1
     assert result_d == 2
 
+def test_sum_fraction():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(1,1,2)
+    fraction_2 = mixed_fractions.Fraction(2,1,4)
+    expected = (3,3,4)
+
+    # Invoke
+    result = fraction_1.add(fraction_2)
+
+    # Analysis
+    assert result.simplify().get_fraction() == expected
+
+def test_sum_fraction():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(3,1,2)
+    fraction_2 = mixed_fractions.Fraction(2,3,4)
+    expected = (6,1,4)
+
+    # Invoke
+    result = fraction_1.add(fraction_2)
+
+    # Analysis
+    assert result.simplify().get_fraction() == expected
+
 ''''
 def test_unique_sorted_list():
     actual = mixed_fractions.unique_sorted_list(FRACTIONS)  
