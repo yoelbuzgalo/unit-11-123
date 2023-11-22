@@ -5,6 +5,14 @@ class Fraction:
         self.__n = numerator
         self.__d = denominator
 
+    def __repr__(self):
+        return "Whole number:" + str(self.__w)\
+                +"\n Numerator:" + str(self.__n)\
+                + "\n Denominator:" + str(self.__d)\
+
+    def __str__(self):
+        return "<" + str(self.__w) + ", " + str(self.__n) + ", " + str(self.__d) + ">"
+
     def get_fraction(self):
         return (self.__w, self.__n, self.__d)
     
@@ -65,17 +73,6 @@ class Fraction:
         sum_d = common_d
 
         return Fraction(sum_w, sum_n, sum_d)
-            
-        
-
-
-
-        
-
-        
-        
-
-
 
 
 
@@ -85,3 +82,9 @@ def gcd(a, b):  # greatest common divisor
         a = b
         b = r
     return a
+
+def main():
+    print(Fraction(2,3,1))
+
+if __name__ == "__main__":
+    main()
