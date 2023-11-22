@@ -32,6 +32,39 @@ class Fraction:
         n = n % d
         
         return Fraction(w, n, d)
+    
+    def add(self, fraction):
+        w_1,n_1 ,d_1 = fraction.get_fraction()
+        w_2,n_2,d_2 = self.get_fraction()
+
+        sum_w = w_1 + w_2 # Sum of whole numbers
+        sum_n = 0
+        sum_d = 0
+
+        # Find the common denominator using gcd
+        common_d = d_1*d_2 // gcd(d_1, d_2)
+
+        # Multiply and update numerators using the difference between common denominator
+        n_1 *= common_d//d_1
+        n_2 *= common_d//d_2
+
+        # Add the numerators up
+        sum_n = n_1 + n_2
+        # Set denominator as common denominator
+        sum_d = common_d
+
+        return Fraction(sum_w, sum_n, sum_d)
+            
+        
+
+
+
+        
+
+        
+        
+
+
 
 
 
