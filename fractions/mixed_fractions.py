@@ -33,11 +33,11 @@ class Fraction:
         
         return Fraction(w, n, d)
     
-    def add(self, fraction):
+    def operator(self, fraction, type="add"):
         w_1,n_1 ,d_1 = fraction.get_fraction()
         w_2,n_2,d_2 = self.get_fraction()
 
-        sum_w = w_1 + w_2 # Sum of whole numbers
+        
         sum_n = 0
         sum_d = 0
 
@@ -48,8 +48,19 @@ class Fraction:
         n_1 *= common_d//d_1
         n_2 *= common_d//d_2
 
-        # Add the numerators up
-        sum_n = n_1 + n_2
+        if type == "add":
+            sum_w = w_1 + w_2 # Sum of whole numbers
+            # Add the numerators up
+            sum_n = n_1 + n_2
+        elif type == "subtract":
+            # Subtract the whole numbers
+            sum_w = (w_1 - w_2) * -1
+            # Subtract the numerators
+            if n_1 > n_2:
+                sum_n = n_1 - n_2
+            else:
+                sum_n = n_2 - n_1
+                
         # Set denominator as common denominator
         sum_d = common_d
 

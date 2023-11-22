@@ -70,7 +70,7 @@ def test_sum_fraction_1():
     expected = (3,3,4)
 
     # Invoke
-    result = fraction_1.add(fraction_2)
+    result = fraction_1.operator(fraction_2, "add")
 
     # Analysis
     assert result.simplify().get_fraction() == expected
@@ -82,7 +82,31 @@ def test_sum_fraction_2():
     expected = (6,1,4)
 
     # Invoke
-    result = fraction_1.add(fraction_2)
+    result = fraction_1.operator(fraction_2, "add")
+
+    # Analysis
+    assert result.simplify().get_fraction() == expected
+
+def test_subtract_fraction_1():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(3,1,2)
+    fraction_2 = mixed_fractions.Fraction(2,1,4)
+    expected = (1,1,4)
+
+    # Invoke
+    result = fraction_1.operator(fraction_2, "subtract")
+
+    # Analysis
+    assert result.simplify().get_fraction() == expected
+
+def test_subtract_fraction_2():
+    # Setup
+    fraction_1 = mixed_fractions.Fraction(2,1,2)
+    fraction_2 = mixed_fractions.Fraction(3,1,4)
+    expected = (-1,1,4)
+
+    # Invoke
+    result = fraction_1.operator(fraction_2, "subtract")
 
     # Analysis
     assert result.simplify().get_fraction() == expected
