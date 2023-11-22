@@ -18,6 +18,51 @@ def test_fraction_implementation():
     assert result_n == n
     assert result_d == d
 
+def test_fraction_simplify_543():
+    # Setup
+    w = 5
+    n = 4
+    d = 3
+
+    # Invoke
+    result_w, result_n, result_d = mixed_fractions.Fraction(w,n,d).simplify().get_fraction()
+
+    # Analysis
+    print(result_w, result_n, result_d)
+    assert result_w == 6
+    assert result_n == 1
+    assert result_d == 3
+
+def test_fraction_simplify_0153():
+    # Setup
+    w = 0
+    n = 15
+    d = -3
+
+    # Invoke
+    result_w, result_n, result_d = mixed_fractions.Fraction(w,n,d).simplify().get_fraction()
+
+    # Analysis
+    print(result_w, result_n, result_d)
+    assert result_w == -5
+    assert result_n == 0
+    assert result_d == 1
+
+def test_fraction_simplify_764():
+    # Setup
+    w = -7
+    n = -6
+    d = -4
+
+    # Invoke
+    result_w, result_n, result_d = mixed_fractions.Fraction(w,n,d).simplify().get_fraction()
+
+    # Analysis
+    print(result_w, result_n, result_d)
+    assert result_w == -6
+    assert result_n == 1
+    assert result_d == 2
+
 ''''
 def test_unique_sorted_list():
     actual = mixed_fractions.unique_sorted_list(FRACTIONS)  
