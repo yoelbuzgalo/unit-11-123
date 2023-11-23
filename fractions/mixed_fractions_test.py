@@ -125,7 +125,7 @@ def test_fraction_equality():
 
 def test_fraction_sorting():
     # Setup
-    fractions = [mixed_fractions.Fraction(-1, 4, 1), mixed_fractions.Fraction(1,2,3), mixed_fractions.Fraction(2, 0, 1)]
+    fractions = [mixed_fractions.Fraction(-1, 4, 1), mixed_fractions.Fraction(1,2,3), mixed_fractions.Fraction(2)]
     expected = [mixed_fractions.Fraction(1,2,3), mixed_fractions.Fraction(2,0,1), mixed_fractions.Fraction(-1, 4, 1)]
     
     # Invoke
@@ -158,7 +158,47 @@ def test_fraction_not_equal():
     # Analysis
     assert result == expected
 
+def test_subtract():
+    a_fraction = mixed_fractions.Fraction(0,4,3)  
+    b_fraction = mixed_fractions.Fraction(1)
+    actual_subtract = a_fraction.operator(b_fraction, "subtract")
+    expected_subtract = mixed_fractions.Fraction(0,1,3)
+    assert expected_subtract == actual_subtract
 
+def test_sum():
+    a_fraction = mixed_fractions.Fraction(1,3,10) # 1.3
+    b_fraction = mixed_fractions.Fraction(4,6,10) # 4.6
+    expected_sum = mixed_fractions.Fraction(5, 9,10) # 5.9
+    actual_sum = a_fraction.operator(b_fraction, "add") 
+    assert expected_sum == actual_sum
+
+def test_eq_1():
+    a_fraction = mixed_fractions.Fraction(-2, 27,13)  
+    b_fraction = mixed_fractions.Fraction(0,7,91)
+    assert a_fraction == b_fraction
+
+def test_eq_2():
+    x = 199933
+    y = 11111111111111111
+    z = x*y                 
+    a_fraction = mixed_fractions.Fraction(0, z, x)
+    b_fraction = mixed_fractions.Fraction(y)
+    assert a_fraction == b_fraction
+
+def test_neq():
+    a_fraction = mixed_fractions.Fraction(0,100000000000000000,3)
+    b_fraction = mixed_fractions.Fraction(0,100000000000000001,3)
+    assert a_fraction != b_fraction
+
+def test_lt():
+    a_fraction = mixed_fractions.Fraction(0, 100000000000000000,3)
+    b_fraction = mixed_fractions.Fraction(0, 100000000000000001,3)
+    assert a_fraction < b_fraction 
+
+def test_gt():
+    a_fraction = mixed_fractions.Fraction(0,100000000000000000,3)
+    b_fraction = mixed_fractions.Fraction(0,100000000000000001,3)
+    assert b_fraction > a_fraction
 
 ''''
 def test_unique_sorted_list():

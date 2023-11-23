@@ -1,6 +1,6 @@
 class Fraction:
     __slots__ = ['__w','__n', '__d']
-    def __init__(self, whole, numerator, denominator):
+    def __init__(self, whole=0, numerator=0, denominator=1):
         self.__w = whole
         self.__n = numerator
         self.__d = denominator
@@ -20,22 +20,42 @@ class Fraction:
 
             if w_1 == w_2 and n_1 == n_2 and d_1 == d_2:
                 return True
+        return False
+    
+    def __ne__(self, other):
+        if type(self) == type(other):
+            w_1, n_1, d_1 = self.simplify().get_fraction()
+            w_2, n_2, d_2 = other.simplify().get_fraction()
+            print(w_1, n_1, d_1)
+            print(w_2, n_2, d_2)
+            if not (w_1 == w_2 and n_1 == n_2 and d_1 == d_2):
+                return True
+        return False
             
     def __lt__(self, other):
         if type(self) == type(other):
             w_1, n_1, d_1 = self.improper_fraction()
             w_2, n_2, d_2 = other.improper_fraction()
 
-            if (n_1/d_1) < (n_2/d_2):
+            x = n_1*d_2
+            y = n_2*d_1
+
+            if x < y:
                 return True
+
+        return False
     
     def __le__(self, other):
         if type(self) == type(other):
             w_1, n_1, d_1 = self.improper_fraction()
             w_2, n_2, d_2 = other.improper_fraction()
 
-            if (n_1/d_1) <= (n_2/d_2):
+            x = n_1*d_2
+            y = n_2*d_1
+
+            if x <= y:
                 return True
+        return False
 
     def get_fraction(self):
         return (self.__w, self.__n, self.__d)
@@ -52,8 +72,8 @@ class Fraction:
         
         # Divide both numerator and denominator by gcd
         gcd_val = gcd(imp_n, imp_d)
-        n = imp_n/gcd_val
-        d = imp_d/gcd_val
+        n = imp_n//gcd_val
+        d = imp_d//gcd_val
 
         # If the denominator is negative, multiply both numerator and denominator by -1
         if d < 0:
