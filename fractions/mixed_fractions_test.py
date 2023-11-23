@@ -216,14 +216,14 @@ def test_unique_sorted_list():
     actual = mixed_fractions.unique_sorted_list(FRACTIONS)  
     assert [FRACTIONS[1], FRACTIONS[0]] == actual
     
-# def test_partition():
-#     actual = mixed_fractions.partition(FRACTIONS)
-#     assert 2 == len(actual)
-#     assert FRACTIONS[0] in actual
-#     assert FRACTIONS[1] in actual
-#     assert FRACTIONS[2] in actual
-#     assert [FRACTIONS[0]] == actual[FRACTIONS[0]]
-#     assert [FRACTIONS[1], FRACTIONS[2]] == actual[FRACTIONS[1]]
+def test_partition():
+    actual = mixed_fractions.partition(FRACTIONS)
+    assert 2 == len(actual)
+    assert FRACTIONS[0] in actual
+    assert FRACTIONS[1] in actual
+    assert FRACTIONS[2] in actual
+    assert [FRACTIONS[0]] == actual[FRACTIONS[0]]
+    assert [FRACTIONS[1], FRACTIONS[2]] == actual[FRACTIONS[1]]
 
 # def test_find_all():
 #     a_partition = mixed_fractions.partition(FRACTIONS) 

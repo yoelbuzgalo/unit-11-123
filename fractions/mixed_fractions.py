@@ -137,6 +137,25 @@ def unique_sorted_list(a_list):
 
     return sorted_list
 
+def partition(a_list):
+    """
+    This function partitions fractions that are equivilent into their list
+    """
+    hashed_fraction_dict = dict()
+
+    for fraction in a_list:
+        if hash(fraction) not in hashed_fraction_dict:
+            hashed_fraction_dict[hash(fraction)] = [fraction]
+        else:
+            hashed_fraction_dict[hash(fraction)].append(fraction)
+
+    fraction_dict = dict()
+
+    for fraction in a_list:
+        fraction_dict[fraction] = hashed_fraction_dict[hash(fraction)]
+    
+    return fraction_dict
+
 
 def main():
     # val = Fraction(2,3,1)
