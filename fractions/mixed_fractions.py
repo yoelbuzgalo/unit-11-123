@@ -156,6 +156,15 @@ def partition(a_list):
     
     return fraction_dict
 
+def find_all(partition, fraction):
+    """
+    Returns a list of fraction that is equivilent to the fraction
+    """
+    if fraction in partition:
+            return partition[fraction]
+    return []
+
+
 
 def main():
     # val = Fraction(2,3,1)
