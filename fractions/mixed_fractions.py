@@ -42,7 +42,6 @@ class Fraction:
 
             if x < y:
                 return True
-
         return False
     
     def __le__(self, other):
@@ -56,6 +55,12 @@ class Fraction:
             if x <= y:
                 return True
         return False
+    
+    def __hash__(self):
+        w,n,d = self.simplify().get_fraction()
+        c = str(w)+"/"+str(n)+"/"+str(d)
+        print(c)
+        return hash(c)
 
     def get_fraction(self):
         return (self.__w, self.__n, self.__d)
@@ -128,7 +133,15 @@ def gcd(a, b):  # greatest common divisor
     return a
 
 def main():
-    print(Fraction(2,3,1))
+    val = Fraction(2,3,1)
+    val_2 = Fraction(2,3,1)
+    val_3 = Fraction(5,2,1)
+    hashed = hash(val)
+    hashed_2 = hash(val_2)
+    hashed_3 = hash(val_3)
+    print(hashed)
+    print(hashed_2)
+    print(hashed_3)
 
 
 if __name__ == "__main__":

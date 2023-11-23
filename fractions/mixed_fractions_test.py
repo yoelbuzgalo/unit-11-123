@@ -200,6 +200,19 @@ def test_gt():
     b_fraction = mixed_fractions.Fraction(0,100000000000000001,3)
     assert b_fraction > a_fraction
 
+def test_hash_same_num():
+    a_fraction = mixed_fractions.Fraction(0, 100, 2) # Should also simplify to 50/1
+    b_fraction = mixed_fractions.Fraction(0, 50, 1)
+
+    assert hash(a_fraction) == hash(b_fraction)
+
+def test_hash_different_num():
+    a_fraction = mixed_fractions.Fraction(0, 2, 100)
+    b_fraction = mixed_fractions.Fraction(0, 100, 2)
+
+    assert hash(a_fraction) != hash(b_fraction)
+
+
 ''''
 def test_unique_sorted_list():
     actual = mixed_fractions.unique_sorted_list(FRACTIONS)  
