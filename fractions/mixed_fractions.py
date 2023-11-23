@@ -26,8 +26,6 @@ class Fraction:
         if type(self) == type(other):
             w_1, n_1, d_1 = self.simplify().get_fraction()
             w_2, n_2, d_2 = other.simplify().get_fraction()
-            print(w_1, n_1, d_1)
-            print(w_2, n_2, d_2)
             if not (w_1 == w_2 and n_1 == n_2 and d_1 == d_2):
                 return True
         return False
@@ -59,7 +57,6 @@ class Fraction:
     def __hash__(self):
         w,n,d = self.simplify().get_fraction()
         c = str(w)+"/"+str(n)+"/"+str(d)
-        print(c)
         return hash(c)
 
     def get_fraction(self):
@@ -123,8 +120,6 @@ class Fraction:
 
         return Fraction(sum_w, sum_n, sum_d)
 
-
-
 def gcd(a, b):  # greatest common divisor
     while b != 0:
         r = a % b
@@ -132,16 +127,29 @@ def gcd(a, b):  # greatest common divisor
         b = r
     return a
 
+def unique_sorted_list(a_list):
+    '''
+    Returns unique sorted list of fraction
+    '''
+    unique_fractions = set(a_list)
+    sorted_list = list(unique_fractions)
+    sorted_list.sort()
+
+    return sorted_list
+
+
 def main():
-    val = Fraction(2,3,1)
-    val_2 = Fraction(2,3,1)
-    val_3 = Fraction(5,2,1)
-    hashed = hash(val)
-    hashed_2 = hash(val_2)
-    hashed_3 = hash(val_3)
-    print(hashed)
-    print(hashed_2)
-    print(hashed_3)
+    # val = Fraction(2,3,1)
+    # val_2 = Fraction(2,3,1)
+    # val_3 = Fraction(5,2,1)
+    # hashed = hash(val)
+    # hashed_2 = hash(val_2)
+    # hashed_3 = hash(val_3)
+    # print(hashed)
+    # print(hashed_2)
+    # print(hashed_3)
+    fraction_list = [Fraction(-1,4,1), Fraction(1,2,3), Fraction(1,4,6)]
+    print(unique_sorted_list(fraction_list))
 
 
 if __name__ == "__main__":
