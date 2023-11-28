@@ -9,14 +9,14 @@ NAME_TO_TABLE = {'t': [[1,1,1],[0,1,0]],
 EMPTY_SPOT = '-'
 BLOCKER_SPOT = 'o'
 
-def f(M):
+def transpose(M):
     return [[ M[col][row] for col in range(len(M))] for row in range(len(M[0]))]
 
-def g(M):
+def rev_row(M):
     return M[::-1]
 
-def h(M):
-    return [M[row][::-1] for row in range(len(M)) ]
+def rev_column(M):
+    return [M[row][::-1] for row in range(len(M))]
 
 def help_message():
     print("- 'help' to display commands")
