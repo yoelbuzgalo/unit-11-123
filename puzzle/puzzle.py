@@ -43,6 +43,24 @@ class Shape:
             if self.__table == other.__table:
                 return True
         return False
+    
+    def fit(self,board, position):
+        row, col = position # Get the board position
+        # Iterate over row and column of shape table
+        for i in range(len(self.__table)):
+            for j in range(len(self.__table[i])):
+                    try:
+                        if self.__table[i][j] == 1 and board[row+i][col+j] == "-":
+                            continue
+                        elif self.__table[i][j] == 0 and board[row+i][col+j] != "-":
+                            continue
+                        else:
+                            return False
+                    except:
+                        # In case where board[row+i] or board[col+j] is an invalid position (out of array), itll return False and not crash program
+                        return False
+        return True
+
 
     def get_table(self):
         return self.__table      
