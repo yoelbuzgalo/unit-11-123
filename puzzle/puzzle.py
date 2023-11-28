@@ -58,7 +58,23 @@ class Shape:
                         # In case where board[row+i] or board[col+j] is an invalid position (out of array), itll return False and not crash program
                         return False
         return True
-
+    
+    def add(self, board, position, symbol):
+        row, col = position
+        if self.fit(self, board, position):
+            for i in range(len(self.__table)):
+                for j in range(len(self.__table[i])):
+                    if self.__table[i][j] == 1:
+                        board[row+i][col+j] = symbol
+        return
+    
+    def remove(self, board, position):
+        row, col = position
+        for i in range(len(self.__table)):
+            for j in range(len(self.__table[i])):
+                if self.__table[i][j] == 1:
+                    board[row+i][col+j] = "-"
+        return
 
     def get_table(self):
         return self.__table      
