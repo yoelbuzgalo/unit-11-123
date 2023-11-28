@@ -50,9 +50,7 @@ class Shape:
         for i in range(len(self.__table)):
             for j in range(len(self.__table[i])):
                     try:
-                        if self.__table[i][j] == 1 and board[row+i][col+j] == "-":
-                            continue
-                        elif self.__table[i][j] == 0 and board[row+i][col+j] != "-":
+                        if (self.__table[i][j] == 1 and board[row+i][col+j] == "-") or (self.__table[i][j] == 0 and board[row+i][col+j] != "-"):
                             continue
                         else:
                             return False
