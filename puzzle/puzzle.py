@@ -31,6 +31,19 @@ class Shape:
         self.__table = table
         self.__position = None        
     
+    def __hash__(self):
+        return hash(str(self.__table))
+    
+    def __repr__(self):
+        return str(self.__table)\
+            + " " + str(self.__position)\
+            
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.__table == other.__table:
+                return True
+        return False
+
     def get_table(self):
         return self.__table      
           
