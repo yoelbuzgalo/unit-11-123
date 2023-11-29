@@ -81,9 +81,10 @@ class Shape:
         return self.__table
 
 class Piece:
-    __slots__ = ['__name', '__fit_shapes', '__choice']
+    __slots__ = ['__name','__current_shape', '__fit_shapes', '__choice']
     def __init__(self, name):
           self.__name = name
+          self.__current_shape = None
           self.__fit_shapes = []
           self.__choice = 0
     
@@ -91,7 +92,11 @@ class Piece:
         return self.__name
     
     def get_current_shape(self):
-        return NAME_TO_TABLE[self.__name]
+        return self.__current_shape
+    
+    def add(self, board, shape, position):
+        shape.add(board, position,self.get_name())
+        self.__current_shape = shape
     
     def get_fit_shapes(self):
         return self.__fit_shapes
@@ -108,7 +113,7 @@ class Piece:
             self.__fit_shapes.append(shape)
 
     def set_fit_shapes(self, board, position):
-        original_shape = Shape(self.get_current_shape())
+        original_shape = Shape(NAME_TO_TABLE[self.__name])
         print(original_shape.get_table())
         self.create_shape(original_shape, board, position)
 
