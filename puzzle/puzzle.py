@@ -98,6 +98,10 @@ class Piece:
         shape.add(board, position,self.get_name())
         self.__current_shape = shape
     
+    def remove(self, board):
+        self.__current_shape.remove(board)
+        self.__current_shape = None
+    
     def get_fit_shapes(self):
         return self.__fit_shapes
     
