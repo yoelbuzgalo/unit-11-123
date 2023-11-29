@@ -118,35 +118,27 @@ class Piece:
 
     def set_fit_shapes(self, board, position):
         original_shape = Shape(NAME_TO_TABLE[self.__name])
-        print(original_shape.get_table())
         self.create_shape(original_shape, board, position)
 
         rev_col_shape = Shape(rev_column(original_shape.get_table())) # Reverse column the original shape
-        print(rev_col_shape.get_table())
         self.create_shape(rev_col_shape, board, position)
 
         rev_row_shape = Shape(rev_row(original_shape.get_table())) # Reverse row the original shape
-        print(rev_row_shape.get_table())
         self.create_shape(rev_row_shape, board, position)
 
         rev_col_row_shape = Shape(rev_column(rev_row(original_shape.get_table()))) # Reverse row the reversed column shape
-        print(rev_col_row_shape.get_table())
         self.create_shape(rev_col_row_shape, board, position)
         
         transposed_shape = Shape(transpose(original_shape.get_table())) # Transpose the shape
-        print(transposed_shape.get_table())
         self.create_shape(transposed_shape, board, position)
 
         rev_row_trans_shape = Shape(rev_row(transposed_shape.get_table())) # Reverse row the transposed shape
-        print(rev_row_trans_shape.get_table())
         self.create_shape(rev_row_trans_shape, board, position)
 
         rev_col_trans_shape = Shape(rev_column(transposed_shape.get_table())) # Reverse column the transposed shape
-        print(rev_col_trans_shape.get_table())
         self.create_shape(rev_col_trans_shape, board, position)
 
         rev_row_col_trans_shape = Shape(rev_row(rev_column(transposed_shape.get_table()))) #Reverse the row and column of transposed shape
-        print(rev_row_col_trans_shape.get_table())
         self.create_shape(rev_row_col_trans_shape, board, position)
 
 
@@ -157,18 +149,61 @@ class Puzzle:
         self.__board = [[EMPTY_SPOT for _ in range(6)] for _ in range(6)]
         for r, c in blockers:
             self.__board[r][c] = BLOCKER_SPOT
+        self.__pieces = {}
+        self.__pieces_on_board = {}
+        for name in NAME_TO_TABLE:
+            self.__pieces[name] = Piece(name)
                
     def play(self):
         print(self)
         while True:
             response = input("Enter a command or 'help': ")
+            response_splitted = response.split(" ")
             if response == "quit":
                 print("Bye!")
                 break
             elif response == "help":
                 help_message()
-            else:
-                pass
+            elif response_splitted[0] == "a":
+                # Add function goes here
+                name = response_splitted[1]
+                if not (name in self.__pieces):
+                    print("Invalid letter piece")
+                    continue
+                position = (int(response_splitted[2]), int(response_splitted[3]))
+                piece = Piece(name)
+                piece.set_fit_shapes(self.__board, position)
+                if len(piece.get_fit_shapes()) == 0:
+                    print("Please try different position, blocked.")
+                else:
+                    list_of_shapes = piece.get_fit_shapes()
+                    selected = False
+                    while selected is False:
+                        current = piece.get_fit_shape()
+                        piece.add(self.__board, current, position)
+                        print(self)
+                        user_input = input(name+": "+"Like this?(y/n) ")
+                        if user_input == "n":
+                            piece.remove(self.__board)
+                            continue
+                        elif user_input == "y":
+                            self.__pieces_on_board[name] = piece
+                            self.__pieces.pop(name)
+                            selected = True
+                            break
+                        else:
+                            print("Invalid input")
+            elif response_splitted[0] == "p":
+                print(self)
+            elif response_splitted[0] == "r":
+                name = response_splitted[1]
+                if name in self.__pieces_on_board:
+                    piece = self.__pieces_on_board[name]
+                    piece.remove(self.__board)
+                    self.__pieces_on_board.pop(name)
+                    self.__pieces[name] = Piece(name)
+                else:
+                    print("Piece isn't on the board!")
     
     def __str__(self):
         s = '    0 1 2 3 4 5\n'
