@@ -49,36 +49,98 @@ class Shape:
         # Iterate over row and column of shape table
         for i in range(len(self.__table)):
             for j in range(len(self.__table[i])):
-                    try:
-                        if (self.__table[i][j] == 1 and board[row+i][col+j] == "-") or (self.__table[i][j] == 0 and board[row+i][col+j] != "-"):
+                    if (row+i) < len(board) and (col+j) < len(board[row+i]):
+                        if (self.__table[i][j] == 1 and board[row+i][col+j] == "-") or (self.__table[i][j] == 0):
                             continue
                         else:
                             return False
-                    except:
+                    else:
                         # In case where board[row+i] or board[col+j] is an invalid position (out of array), itll return False and not crash program
                         return False
         return True
     
     def add(self, board, position, symbol):
-        row, col = position
-        if self.fit(self, board, position):
-            for i in range(len(self.__table)):
-                for j in range(len(self.__table[i])):
-                    if self.__table[i][j] == 1:
-                        board[row+i][col+j] = symbol
-        return
-    
-    def remove(self, board, position):
-        row, col = position
+        self.__position = position
+        row, col = self.__position
         for i in range(len(self.__table)):
             for j in range(len(self.__table[i])):
                 if self.__table[i][j] == 1:
-                    board[row+i][col+j] = "-"
+                    board[row+i][col+j] = symbol
+        return
+    
+    def remove(self, board):
+        if self.__position != None:
+            row, col = self.__position
+            for i in range(len(self.__table)):
+                for j in range(len(self.__table[i])):
+                    if self.__table[i][j] == 1:
+                        board[row+i][col+j] = "-"
         return
 
     def get_table(self):
-        return self.__table      
-          
+        return self.__table
+
+class Piece:
+    __slots__ = ['__name', '__fit_shapes', '__choice']
+    def __init__(self, name):
+          self.__name = name
+          self.__fit_shapes = []
+          self.__choice = 0
+    
+    def get_name(self):
+        return self.__name
+    
+    def get_current_shape(self):
+        return NAME_TO_TABLE[self.__name]
+    
+    def get_fit_shapes(self):
+        return self.__fit_shapes
+    
+    def get_fit_shape(self):
+        if len(self.__fit_shapes) == 0:
+            return None
+        choice = self.__fit_shapes[self.__choice]
+        self.__choice = (self.__choice + 1) % len(self.__fit_shapes)
+        return choice
+    
+    def create_shape(self,shape,board,position):
+        if shape.fit(board, position):
+            self.__fit_shapes.append(shape)
+
+    def set_fit_shapes(self, board, position):
+        original_shape = Shape(self.get_current_shape())
+        print(original_shape.get_table())
+        self.create_shape(original_shape, board, position)
+
+        rev_col_shape = Shape(rev_column(original_shape.get_table())) # Reverse column the original shape
+        print(rev_col_shape.get_table())
+        self.create_shape(rev_col_shape, board, position)
+
+        rev_row_shape = Shape(rev_row(original_shape.get_table())) # Reverse row the original shape
+        print(rev_row_shape.get_table())
+        self.create_shape(rev_row_shape, board, position)
+
+        rev_col_row_shape = Shape(rev_column(rev_row(original_shape.get_table()))) # Reverse row the reversed column shape
+        print(rev_col_row_shape.get_table())
+        self.create_shape(rev_col_row_shape, board, position)
+        
+        transposed_shape = Shape(transpose(original_shape.get_table())) # Transpose the shape
+        print(transposed_shape.get_table())
+        self.create_shape(transposed_shape, board, position)
+
+        rev_row_trans_shape = Shape(rev_row(transposed_shape.get_table())) # Reverse row the transposed shape
+        print(rev_row_trans_shape.get_table())
+        self.create_shape(rev_row_trans_shape, board, position)
+
+        rev_col_trans_shape = Shape(rev_column(transposed_shape.get_table())) # Reverse column the transposed shape
+        print(rev_col_trans_shape.get_table())
+        self.create_shape(rev_col_trans_shape, board, position)
+
+        rev_row_col_trans_shape = Shape(rev_row(rev_column(transposed_shape.get_table()))) #Reverse the row and column of transposed shape
+        print(rev_row_col_trans_shape.get_table())
+        self.create_shape(rev_row_col_trans_shape, board, position)
+
+
 class Puzzle:
     __slots__ = ['__board', '__pieces', '__pieces_on_board', '__game_over']
     
